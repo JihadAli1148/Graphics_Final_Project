@@ -1,0 +1,516 @@
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include <stdlib.h>
+#include <math.h>
+
+int isDay = 1; // Global flag for day (1 = day, 0 = night)
+
+void display(void)
+{
+
+glClear (GL_COLOR_BUFFER_BIT);
+
+if (isDay)
+    glColor3ub(0, 204, 255); // Day sky
+else
+    glColor3ub(0, 0, 51); // Night sky
+
+glBegin(GL_POLYGON);
+glVertex2i(0, 400);
+glVertex2i(800, 400);
+glVertex2i(800, 700);
+glVertex2i(0, 700);
+glEnd();
+
+
+if (isDay)
+    glColor3ub(102, 102, 0); // Ground - day
+else
+    glColor3ub(51, 51, 0); // Ground - night
+
+glBegin(GL_POLYGON);
+glVertex2i (0, 0);
+glVertex2i (800, 0);
+glVertex2i (800, 400);
+glVertex2i (0, 400);
+glEnd();
+
+
+glColor3ub (32, 32, 32);//Road 1
+glBegin(GL_POLYGON);
+glVertex2i (0, 50);
+glVertex2i (800, 50);
+glVertex2i (800, 200);
+glVertex2i (0, 200);
+glEnd();
+
+
+glEnable(GL_LINE_STIPPLE);//Road 1 Line Draw
+glLineStipple(3,0x00ff);
+
+glBegin(GL_LINES);
+glColor3ub(255,255,255);
+glVertex2i(0,130);
+glVertex2i(800,130);
+glEnd();
+glDisable(GL_LINE_STIPPLE);
+//glPopMatrix();
+
+glColor3ub (32, 32, 32);//Road 2
+glBegin(GL_POLYGON);
+glVertex2i (350, 200);
+glVertex2i (400, 200);
+glVertex2i (400, 350);
+glVertex2i (350, 350);
+glEnd();
+
+glColor3ub (32, 32, 32);//Road 3
+glBegin(GL_POLYGON);
+glVertex2i (0, 350);
+glVertex2i (800, 350);
+glVertex2i (800, 380);
+glVertex2i (0, 380);
+glEnd();
+
+
+glColor3ub (102, 0, 0);//building 1
+glBegin(GL_POLYGON);
+glVertex2i (30, 390);
+glVertex2i (100, 390);
+glVertex2i (100, 500);
+glVertex2i (30, 500);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 1 window 1
+glBegin(GL_POLYGON);
+glVertex2i (40, 460);
+glVertex2i (60, 460);
+glVertex2i (60, 480);
+glVertex2i (40, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 1 window 2
+glBegin(GL_POLYGON);
+glVertex2i (70, 460);
+glVertex2i (90, 460);
+glVertex2i (90, 480);
+glVertex2i (70, 480);
+glEnd();
+
+
+glColor3ub (0, 153, 76);//building 2
+glBegin(GL_POLYGON);
+glVertex2i (210, 390);
+glVertex2i (280, 390);
+glVertex2i (280, 500);
+glVertex2i (210, 500);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 2 window 1
+glBegin(GL_POLYGON);
+glVertex2i (220, 460);
+glVertex2i (240, 460);
+glVertex2i (240, 480);
+glVertex2i (220, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 2 window 2
+glBegin(GL_POLYGON);
+glVertex2i (250, 460);
+glVertex2i (270, 460);
+glVertex2i (270, 480);
+glVertex2i (250, 480);
+glEnd();
+
+glColor3ub (0, 102, 51);//building 3
+glBegin(GL_POLYGON);
+glVertex2i (330, 390);
+glVertex2i (420, 390);
+glVertex2i (420, 500);
+glVertex2i (330, 500);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 3 window 1
+glBegin(GL_POLYGON);
+glVertex2i (335, 460);
+glVertex2i (355, 460);
+glVertex2i (355, 480);
+glVertex2i (335, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 3 window 2
+glBegin(GL_POLYGON);
+glVertex2i (365, 460);
+glVertex2i (385, 460);
+glVertex2i (385, 480);
+glVertex2i (365, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 3 window 3
+glBegin(GL_POLYGON);
+glVertex2i (395, 460);
+glVertex2i (415, 460);
+glVertex2i (415, 480);
+glVertex2i (395, 480);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 3 window 4
+glBegin(GL_POLYGON);
+glVertex2i (335, 425);
+glVertex2i (355, 425);
+glVertex2i (355, 450);
+glVertex2i (335, 450);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 3 window 5
+glBegin(GL_POLYGON);
+glVertex2i (365, 425);
+glVertex2i (385, 425);
+glVertex2i (385, 450);
+glVertex2i (365, 450);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 3 window 6
+glBegin(GL_POLYGON);
+glVertex2i (395, 425);
+glVertex2i (415, 425);
+glVertex2i (415, 450);
+glVertex2i (395, 450);
+glEnd();
+
+
+
+glColor3ub (0, 102, 102);//building 4
+glBegin(GL_POLYGON);
+glVertex2i (430, 390);
+glVertex2i (500, 390);
+glVertex2i (500, 500);
+glVertex2i (430, 500);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 4 window 1
+glBegin(GL_POLYGON);
+glVertex2i (440, 460);
+glVertex2i (460, 460);
+glVertex2i (460, 480);
+glVertex2i (440, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 4 window 2
+glBegin(GL_POLYGON);
+glVertex2i (470, 460);
+glVertex2i (490, 460);
+glVertex2i (490, 480);
+glVertex2i (470, 480);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 4 window 3
+glBegin(GL_POLYGON);
+glVertex2i (440, 430);
+glVertex2i (460, 430);
+glVertex2i (460, 450);
+glVertex2i (440, 450);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 4 window 4
+glBegin(GL_POLYGON);
+glVertex2i (470, 430);
+glVertex2i (490, 430);
+glVertex2i (490, 450);
+glVertex2i (470, 450);
+glEnd();
+
+
+glColor3ub (0, 102, 102);//building 5
+glBegin(GL_POLYGON);
+glVertex2i (600, 390);
+glVertex2i (700, 390);
+glVertex2i (700, 500);
+glVertex2i (600, 500);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 5 window 1
+glBegin(GL_POLYGON);
+glVertex2i (610, 460);
+glVertex2i (630, 460);
+glVertex2i (630, 480);
+glVertex2i (610, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 5 window 2
+glBegin(GL_POLYGON);
+glVertex2i (640, 460);
+glVertex2i (660, 460);
+glVertex2i (660, 480);
+glVertex2i (640, 480);
+glEnd();
+
+glColor3ub (32, 32, 32);//building 5 window 3
+glBegin(GL_POLYGON);
+glVertex2i (670, 460);
+glVertex2i (690, 460);
+glVertex2i (690, 480);
+glVertex2i (670, 480);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 5 window 4
+glBegin(GL_POLYGON);
+glVertex2i (610, 430);
+glVertex2i (630, 430);
+glVertex2i (630, 450);
+glVertex2i (610, 450);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 5 window 5
+glBegin(GL_POLYGON);
+glVertex2i (640, 430);
+glVertex2i (660, 430);
+glVertex2i (660, 450);
+glVertex2i (640, 450);
+glEnd();
+
+glColor3ub (255, 255, 102);//building 5 window 6
+glBegin(GL_POLYGON);
+glVertex2i (670, 430);
+glVertex2i (690, 430);
+glVertex2i (690, 450);
+glVertex2i (670, 450);
+glEnd();
+
+glColor3ub (255, 51, 51);//Behind Tower building
+glBegin(GL_POLYGON);
+glVertex2i (280, 340);
+glVertex2i (345, 340);
+glVertex2i (345, 460);
+glVertex2i (280, 460);
+glEnd();
+
+glColor3ub (153, 0, 76);//building
+glBegin(GL_POLYGON);
+glVertex2i (130, 270);
+glVertex2i (230, 270);
+glVertex2i (230, 480);
+glVertex2i (130, 480);
+glEnd();
+
+glColor3ub (255, 255, 102); //build  window 1
+glBegin(GL_POLYGON);
+glVertex2i (150, 430);
+glVertex2i (170, 430);
+glVertex2i (170, 460);
+glVertex2i (150, 460);
+glEnd();
+
+glColor3ub (32, 32, 32); //build  window 2
+glBegin(GL_POLYGON);
+glVertex2i (190, 430);
+glVertex2i (210, 430);
+glVertex2i (210, 460);
+glVertex2i (190, 460);
+glEnd();
+
+
+glColor3ub (32, 32, 32); //build  window 3
+glBegin(GL_POLYGON);
+glVertex2i (150, 380);
+glVertex2i (170, 380);
+glVertex2i (170, 410);
+glVertex2i (150, 410);
+glEnd();
+
+glColor3ub (255, 255, 102); //build  window 4
+glBegin(GL_POLYGON);
+glVertex2i (190, 380);
+glVertex2i (210, 380);
+glVertex2i (210, 410);
+glVertex2i (190, 410);
+glEnd();
+
+
+glColor3ub (0, 0, 102);//building
+glBegin(GL_POLYGON);
+glVertex2i (50, 250);
+glVertex2i (150, 250);
+glVertex2i (150, 450);
+glVertex2i (50, 450);
+glEnd();
+
+glColor3ub (255, 255, 102); //build  window 1
+glBegin(GL_POLYGON);
+glVertex2i (70, 400);
+glVertex2i (90, 400);
+glVertex2i (90, 430);
+glVertex2i (70, 430);
+glEnd();
+
+glColor3ub (255, 255, 102); //build  window 2
+glBegin(GL_POLYGON);
+glVertex2i (110, 400);
+glVertex2i (130, 400);
+glVertex2i (130, 430);
+glVertex2i (110, 430);
+glEnd();
+
+
+glColor3ub (255, 255, 102); //build  window 3
+glBegin(GL_POLYGON);
+glVertex2i (70, 350);
+glVertex2i (90, 350);
+glVertex2i (90, 380);
+glVertex2i (70, 380);
+glEnd();
+
+glColor3ub (255, 255, 102); //build  window 4
+glBegin(GL_POLYGON);
+glVertex2i (110, 350);
+glVertex2i (130, 350);
+glVertex2i (130, 380);
+glVertex2i (110, 380);
+glEnd();
+
+
+glColor3ub (204, 204, 0); //tower Triangle
+glBegin(GL_TRIANGLES);
+glVertex2i (250, 420);
+glVertex2i (295, 480);
+glVertex2i (340, 420);
+glEnd();
+
+glColor3ub (102, 51, 0); //tower Polygon
+glBegin(GL_POLYGON);
+glVertex2i (250, 250);
+glVertex2i (340, 250);
+glVertex2i (340, 420);
+glVertex2i (250, 420);
+glEnd();
+
+glColor3ub (0, 51, 0); //tower Door
+glBegin(GL_POLYGON);
+glVertex2i (280, 250);
+glVertex2i (310, 250);
+glVertex2i (310, 300);
+glVertex2i (280, 300);
+glEnd();
+
+
+//Bresenham's Circle Algorithm
+
+//Moon Shape
+if (!isDay) {
+
+    int p,x,y;
+int xc=700, yc=600, r=30;
+p=1-r;
+x=0;
+y=r;
+while(x<=y)
+{
+if(p<0)
+{
+x=x+1;
+p=p+2*x+1;
+}
+else
+{
+x=x+1;
+y=y-1;
+p=p+2*(x+1)-2*(y+1);
+}
+glColor3f(1.0, 1.0, 0.0);
+glBegin(GL_POLYGON);
+glVertex2i(x+xc,y+yc);
+glVertex2i(x+xc,-y+yc);
+glVertex2i(-x+xc,-y+yc);
+glVertex2i(-x+xc,y+yc);
+glVertex2i(y+xc,x+yc);
+glVertex2i(y+xc,-x+yc);
+glVertex2i(-y+xc,-x+yc);
+glVertex2i(-y+xc,x+yc);
+glEnd();
+}
+}
+
+
+
+glColor3ub(153,0,0);//Building
+glBegin(GL_POLYGON);
+glVertex2i (550, 230);
+glVertex2i (640, 230);
+glVertex2i (640, 400);
+glVertex2i (550, 400);
+glEnd();
+
+
+glColor3ub(32,32,32);//Building window
+glBegin(GL_POLYGON);
+glVertex2i (565, 350);
+glVertex2i (590, 350);
+glVertex2i (590, 380);
+glVertex2i (565, 380);
+glEnd();
+
+glColor3ub(255,255,102);//Building window
+glBegin(GL_POLYGON);
+glVertex2i (600, 350);
+glVertex2i (625, 350);
+glVertex2i (625, 380);
+glVertex2i (600, 380);
+glEnd();
+
+
+glColor3ub(255,255,102);//Building window
+glBegin(GL_POLYGON);
+glVertex2i (565, 310);
+glVertex2i (590, 310);
+glVertex2i (590, 340);
+glVertex2i (565, 340);
+glEnd();
+
+glColor3ub(32,32,32);//Building window
+glBegin(GL_POLYGON);
+glVertex2i (600, 310);
+glVertex2i (625, 310);
+glVertex2i (625, 340);
+glVertex2i (600, 340);
+glEnd();
+
+
+glFlush ();
+}
+void init (void)
+{
+
+glClearColor (0.0, 0.0, 0.0, 0.0);
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+/*glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0); */
+gluOrtho2D(0,800,0,700);
+}
+
+void handleKeypress(unsigned char key, int x, int y) {
+    if (key == 'd') {
+        isDay = 1; // Switch to day mode
+    } else if (key == 'n') {
+        isDay = 0; // Switch to night mode
+    }
+    glutPostRedisplay(); // Redraw the scene
+}
+
+
+int main(int argc, char** argv)
+{
+glutInit(&argc, argv);
+glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+glutInitWindowSize (400, 500);
+glutInitWindowPosition (100, 100);
+glutCreateWindow ("Town's View");
+init ();
+glutDisplayFunc(display);
+glutKeyboardFunc(handleKeypress);
+glutMainLoop();
+return 0;
+}
